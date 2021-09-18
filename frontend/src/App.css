@@ -1,5 +1,6 @@
 html {
   background-color: #202020;
+  max-width: 800px;
 }
 
 .input {
