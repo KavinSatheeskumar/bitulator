@@ -45,7 +45,6 @@ html {
   align-items: center;
   max-width: 800px;
   margin: 0 auto;
-  border-bottom: 1px solid #d8e3e7;
 }
 
 .header h2 {
@@ -65,4 +64,8 @@ html {
 .header .nav-links a {
   text-decoration: none;
   color: #FF1E56;
+}
+
+.response {
+  color: #ff1e56;
 }

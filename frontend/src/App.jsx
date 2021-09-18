@@ -64,7 +64,8 @@ const App = () => {
           <button type="submit">Send</button>
         </form>
       </div>
-      <p>{response}</p>
+      <div className="response"><p>{response}</p></div>
+      
       <button onClick={Animate}>Click to do fancy stuff</button>
       <div 
         className="Instructions"
