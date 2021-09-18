@@ -7,7 +7,13 @@ import Header from "./Header";
 const MEM_WID = 16;
 const MEM_HIG = 16;
 
-const TEST_INSTRS = [["ADD"]];
+const TEST_INSTRS = [
+  ['ADD','SP','1','2'],
+  ['ADD','MSP','SP','1'],
+  ['MULT','SP','SP-1','SP-1'],
+  ['ADD','MSP','SP','1'],
+  ['DIV','SP','SP-1','SP-2']
+]
 
 /*
 state = {
@@ -60,6 +66,8 @@ const App = () => {
       }
     }
 
+    let SPthing = d3.select(instructionsRef.current).append('p');
+
     for (let i = 0; i < instrs.length; ++i) {
       let row = CompdCode.append("tr");
       row.append("td").text(instrs[i]);
@@ -88,11 +96,12 @@ const App = () => {
     axios
       .post("http://bitulator.net/api", request)
       .then((res) => {
-        let newInstrs = res.data.split(",").map((str) => str.split());
+        let newInstrs = res.data.split(",").map((str) => str.split(""));
+        console.log(newInstrs);
         setMyState({
           ...myState,
           response: res.data,
-          instrs: newInstrs,
+          instrs: TEST_INSTRS,
           isAnimating: true,
         });
       })
