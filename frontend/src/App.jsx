@@ -115,6 +115,10 @@ const App = () => {
         </table>
       */}
       </div>
+      <div className="description">
+        <h3>Getting Started</h3>
+        <h5></h5>
+      </div>
     </div>
   );
 };

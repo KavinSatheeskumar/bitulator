@@ -80,6 +80,6 @@ html {
   background-color: black;
   border: #ffac41 solid 1px;
   color: #ffffff;
-  width: 100%;
-  height: fit-content;
+  max-width: 800px;
+  height: auto;
 }
