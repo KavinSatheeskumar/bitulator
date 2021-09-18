@@ -78,89 +78,15 @@ struct Tokens {
     std::string type, value; 
 }; 
 
-std::set<char> operators = {'+', '-', '*', '/', '^', '$'}; 
-std::set<char> allbrackets = {'(', ')'}; 
-std::vector<Tokens> result; 
-std::unordered_map<int, int> matchbrackets; 
 
-bool isValid = true; 
-bool bracketErr = false; 
-bool cErr = false; bool charErr = false; 
-void getchars(std::string input) {  
-    bool isNumber = false; std::string tmp = ""; std::string convert = "";
-    for(char c : input) {
-        if(isNumber) {
-            if(c >= '0' && c <= '9') tmp += c; 
-
-            else if(operators.count(c)) {
-                isNumber = false;
-                result.push_back({"Number", tmp});
-                tmp = ""; 
-                convert += c; 
-                result.push_back({"Operator", convert}); 
-                convert = ""; 
-            }
-
-            else if(allbrackets.count(c)) {
-                isNumber = false;
-                result.push_back({"Number", tmp});
-                tmp = ""; 
-                convert += c;
-                result.push_back({"Bracket", convert});
-                convert = ""; 
-            }
-
-            else {
-                charErr = true; 
-                isValid = false; 
-                return; 
-            }
-        }
-        else {
-            if(c >= '0' && c <= '9') {
-                tmp += c;
-                isNumber = true; 
-            }
-
-            else if(operators.count(c)) {
-                convert += c; 
-                result.push_back({"Operator", convert}); 
-                convert = ""; 
-            }
-
-            else if(allbrackets.count(c)) {
-                convert += c;
-                result.push_back({"Bracket", convert});
-                convert = ""; 
-            }
-
-            else {
-                charErr = true; 
-                isValid = false; 
-                return; 
-            }
-        }
-    }   
-    if(isNumber) result.push_back({"Number", tmp});
-}
-
-
-int main(int argc, char* argv[]) {
-
-    std::string input = argv[1]; 
-    //remove useless whitespace
-    input.erase(std::remove_if(input.begin(), input.end(), ::isspace), input.end());
-    getchars(input); 
-
-    std::cout << input << '\n'; 
-
-
+bool validation(std::vector<Tokens> result) {
     int n = result.size();
-
-    int opcnt[n]; int ncnt[n]; 
+    int opcnt[n]; int ncnt[n]; std::unordered_map<int, int> matchbrackets;
     memset(opcnt, 0, sizeof(opcnt)); 
     memset(ncnt, 0, sizeof(ncnt)); 
-
+    bool isValid = true; 
+    bool bracketErr = false; 
+    bool cErr = false; bool charErr = false; 
     std::string prevt = ""; std::stack<int> bids;  std::vector<int> bbids; 
 
 
@@ -230,15 +156,90 @@ int main(int argc, char* argv[]) {
         }
     }
 
-    if(isValid) {
+    if(isValid) return true; 
+    else {
+        if(bracketErr) std::cerr << "Bracket Error" << '\n';
+        if(cErr) std::cerr << "Format Error" << '\n'; 
+        if(charErr) std::cerr << "Invalid Character" << '\n'; 
+        return false; 
+    } 
+}
+
+std::vector<Tokens> getchars(std::string input) {  
+    std::vector<Tokens> result;  
+    std::set<char> operators = {'+', '-', '*', '/', '^', '$'}; 
+    std::set<char> allbrackets = {'(', ')'}; 
+    bool isValid = true; bool charErr = false; 
+    bool isNumber = false; std::string tmp = ""; std::string convert = "";
+    for(char c : input) {
+        if(isNumber) {
+            if(c >= '0' && c <= '9') tmp += c; 
+
+            else if(operators.count(c)) {
+                isNumber = false;
+                result.push_back({"Number", tmp});
+                tmp = ""; 
+                convert += c; 
+                result.push_back({"Operator", convert}); 
+                convert = ""; 
+            }
+
+            else if(allbrackets.count(c)) {
+                isNumber = false;
+                result.push_back({"Number", tmp});
+                tmp = ""; 
+                convert += c;
+                result.push_back({"Bracket", convert});
+                convert = ""; 
+            }
+
+            else {
+                charErr = true; 
+                isValid = false; 
+            }
+        }
+        else {
+            if(c >= '0' && c <= '9') {
+                tmp += c;
+                isNumber = true; 
+            }
+
+            else if(operators.count(c)) {
+                convert += c; 
+                result.push_back({"Operator", convert}); 
+                convert = ""; 
+            }
+
+            else if(allbrackets.count(c)) {
+                convert += c;
+                result.push_back({"Bracket", convert});
+                convert = ""; 
+            }
+
+            else {
+                charErr = true; 
+                isValid = false; 
+            }
+        }
+    }   
+
+    if(isNumber) result.push_back({"Number", tmp});
+
+    if(validation(result) && isValid) {
+        return result; 
         std::cout << "Tokens:" << '\n'; 
         for(Tokens t : result) {
             std::cout << t.type << " " << t.value << '\n';  
         }
     }
-    else {
-        if(bracketErr) std::cout << "Bracket Error" << '\n';
-        if(cErr) std::cout << "Format Error" << '\n'; 
-        if(charErr) std::cout << "Invalid Character" << '\n'; 
-    } 
+    else return {}; 
+}
+
+// 
+int main(int argc, char* argv[]) {
+
+    std::string input = argv[1]; //
+    //remove useless whitespace
+    input.erase(std::remove_if(input.begin(), input.end(), ::isspace), input.end());
+    std::vector<Tokens> tmp = getchars(input);   
 }; 
