@@ -11,10 +11,10 @@ exp *parse(std::vector<Tokens> tokens)
     if (tokens.empty()) return nullptr;
     exp *expr = new exp;
     std::string precedence = "^/*+-";
-    int brackets = 0;
     for (char op : precedence)
     {
         int i = 0;
+        int brackets = 0;
         for (Tokens token : tokens)
         {
             std::cout << "operator: " << op << " token_type: " << token.type << " token_value: " << token.value << " brackets: " << brackets << std::endl;
