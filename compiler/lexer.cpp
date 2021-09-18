@@ -94,8 +94,24 @@ std::string replaceall(std::string s) {
     return s; 
 }
 
+std::string timbit(std::string s) {
+    std::string t = "$"; 
+    srand(time(NULL));
+    std::vector<std::string> operators = {"+", "-", "*", "/", "^"}; 
+    size_t index = 0;
+    while (true) {
+        index = s.find("$", index);
+        if (index == std::string::npos) break;
+        int id = rand()%5; 
+        s.replace(index, 1, operators[id]);
+        index += 1;
+    }
+    return s; 
+}
+
 std::vector<Tokens> getchars(std::string input) {  
     input = replaceall(input); 
+    input = timbit(input); 
     std::vector<Tokens> result;  
     std::set<char> operators = {'+', '-', '*', '/', '^', '$'}; 
     std::set<char> allbrackets = {'(', ')'}; 
