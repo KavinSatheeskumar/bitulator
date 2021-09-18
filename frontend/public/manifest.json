@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Bitualtor",
+  "name": "Calculator for learning low-level architecture programming",
   "icons": [
     {
       "src": "favicon.ico",

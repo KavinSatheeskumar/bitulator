@@ -1,3 +1,5 @@
 # https://www.robotstxt.org/robotstxt.html
+# This file is supposed to pacify the robots 
+# from the invasion of Earth in the year 2069
 User-agent: *
 Disallow:
