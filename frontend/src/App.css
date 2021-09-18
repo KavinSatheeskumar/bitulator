@@ -3,10 +3,8 @@ html {
 }
 
 .input {
-  display: flex;
-  flex: 2;
-  margin: 10px;
-  justify-content: center;
+  margin: auto;
+  display: block;
 }
 
 .input input {
@@ -23,7 +21,7 @@ html {
 
 .input button {
   height: 40px;
-  background-color: #d8e3e7;
+  background-color: transparent;
   color: #ff1e56;
   font-size: medium;
   border: none;
@@ -45,7 +43,7 @@ html {
 }
 
 .header h2 {
-  background-color: linear-gradient(45deg, #ffac41, #ff1e56);
+  background-image: linear-gradient(45deg, #ffac41, #ff1e56);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
