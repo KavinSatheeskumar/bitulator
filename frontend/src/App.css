@@ -3,8 +3,7 @@ html {
 }
 
 .input {
-  margin: auto;
-  display: block;
+
 }
 
 .input input {
@@ -17,6 +16,10 @@ html {
   height: 40px;
   border-radius: 5px;
   border: 1px black solid;
+  text-align: center;
+  display: flex;
+  flex: 2;
+  justify-content: center
 }
 
 .input button {
