@@ -4,6 +4,13 @@ import * as d3 from "d3";
 import axios from "axios";
 import Header from "./Header";
 
+const MEM_WID = 16;
+const MEM_HIG = 16;
+
+const TEST_INSTRS = [
+  ['ADD']
+]
+
 /*
 state = {
   input: string
@@ -12,6 +19,10 @@ state = {
   isAnimating: boolean
 }
 */
+
+function interp(inst, mem_arr) {
+  console.log(inst);
+}
 
 const App = () => {
   /*
@@ -30,27 +41,35 @@ const App = () => {
 
   useEffect(() => {
     const { instrs, isAnimating } = myState;
-    d3.select(instructionsRef.current).select("table").remove();
-    let table = d3
-      .select(instructionsRef.current)
-      .append("table")
-      .append("tbody");
-    for (let i = 0; i < instrs.length; ++i) {
-      let row = table.append("tr");
-      row.append("td").text(instrs[i]);
-      row.append("td").text("---");
-      row.transition().style("background-color", "none");
-      row
-        .transition()
-        .delay(1000 * instrs.length)
-        .style("background-color", "none");
-      if (isAnimating) {
-        console.log("hi");
-        row
-          .transition()
-          .delay(1000 * i)
-          .style("background-color", "red");
+    d3.select(instructionsRef.current).selectAll('table').remove();
+    let CompdCode = 
+      d3.select(instructionsRef.current).append('table').append('tbody');
+
+    let Memory = 
+      d3.select(instructionsRef.current).append('table').append('tbody');
+
+    let mem_arr = [];
+
+    for (let i = 0; i < MEM_WID; ++i) {
+      let row = Memory.append('tr')
+      for (let j = 0; j < MEM_HIG; ++j) {
+        let cell = row.append('td').text('_');
+        mem_arr.push(cell);
       }
+    }
+
+    for (let i = 0; i < instrs.length; ++i) {
+      let row = CompdCode.append('tr');
+      row.append('td').text(instrs[i]);
+      row.transition().style("background-color", "transparent")
+
+      if (isAnimating) {
+        let command = instrs[i];
+        interp(command, mem_arr);
+        row.transition().delay(1000*i).style("background-color", "red")
+      }
+
+      row.transition().delay(1000*instrs.length).style("background-color", "transparent")
     }
   }, [myState]);
 
@@ -61,13 +80,10 @@ const App = () => {
     axios
       .post("http://bitulator.net/api", request)
       .then((res) => {
-        setMyState({ ...myState, response: res.data, isAnimating: false });
+        let newInstrs = res.data.split(',').map((str) => str.split());
+        setMyState({...myState, response: res.data, instrs: newInstrs, isAnimating: true});
       })
       .catch((error) => console.error(error));
-  };
-
-  const Animate = (e) => {
-    setMyState({ ...myState, isAnimating: true });
   };
 
   return (
@@ -94,12 +110,12 @@ const App = () => {
           <button type="submit">Send</button>
         </form>
       </div>
-      <div className="response">
-        <p>{myState.response}</p>
-      </div>
-      <button onClick={Animate}>Click to do fancy stuff</button>
-      <div className="Instructions" ref={instructionsRef}>
-        {/*
+      <p>{myState.response}</p>
+      <div 
+        className="Instructions"
+        ref={instructionsRef}
+      >
+      {/*
         <table 
           id="Code"
           ref={instructionsRef}
