@@ -28,7 +28,7 @@ const App = () => {
       }
     }
     setAnimating(false);
-  })
+  }, [isAnimating, instrs])
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -66,7 +66,11 @@ const App = () => {
       </div>
       <p>{response}</p>
       <button onClick={Animate}>Click to do fancy stuff</button>
-      <div className="Instructions">
+      <div 
+        className="Instructions"
+        ref={instructionsRef}
+      >
+      {/*
         <table 
           id="Code"
           ref={instructionsRef}
@@ -80,6 +84,7 @@ const App = () => {
               ))}
           </tbody>
         </table>
+      */}
       </div>
     </div>
   );

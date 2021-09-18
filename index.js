@@ -33,7 +33,7 @@ app.use(function(req, res, next) {
 
 app.post('/api', (req, res) => {
     console.log(req.body)
-    const child = execFile(path.join(__dirname, './compiler/lexer'), [req.body.input])
+    const child = execFile(path.join(__dirname, './compiler/main'), [req.body.input])
     child.stdout.on('data', data => {
         console.log(data.toString())
         res.send(data.toString())
