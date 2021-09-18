@@ -9,5 +9,4 @@ int main(int argc, char* argv[]) {
     //remove useless whitespace
     input.erase(std::remove_if(input.begin(), input.end(), ::isspace), input.end());
     std::vector<Tokens> tmp = getchars(input);
-    parse(tmp);
 }; 
