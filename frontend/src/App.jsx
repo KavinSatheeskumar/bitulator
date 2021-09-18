@@ -4,7 +4,7 @@ import * as d3 from "d3";
 import axios from "axios";
 import Header from "./Header";
 
-const MEM_WID = 16;
+const MEM_WID = 8;
 const MEM_HIG = 16;
 
 const TEST_INSTRS = [
@@ -25,6 +25,11 @@ state = {
 */
 
 function interp(inst, mem_arr) {
+  let op = inst[0];
+  let loc = inst[1];
+  let arg1 = inst[2];
+  let arg2 = inst[3];
+
   console.log(inst);
 }
 
@@ -49,11 +54,13 @@ const App = () => {
     let CompdCode = d3
       .select(instructionsRef.current)
       .append("table")
+      .attr('class','CompdCode')
       .append("tbody");
 
     let Memory = d3
       .select(instructionsRef.current)
       .append("table")
+      .attr('Memory')
       .append("tbody");
 
     let mem_arr = [];
@@ -101,7 +108,7 @@ const App = () => {
         setMyState({
           ...myState,
           response: res.data,
-          instrs: TEST_INSTRS,
+          instrs: newInstrs,
           isAnimating: true,
         });
       })
