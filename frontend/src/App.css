@@ -1,5 +1,7 @@
 html {
   background-color: #202020;
+  display: flex;
+  justify-content: center;
   max-width: 800px;
 }
 
