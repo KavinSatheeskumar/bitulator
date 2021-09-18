@@ -2,7 +2,6 @@ html {
   background-color: #202020;
   display: flex;
   justify-content: center;
-
 }
 
 .App {
@@ -12,7 +11,7 @@ html {
 .input {
   display: flex;
   flex: 2;
-  justify-content: center
+  justify-content: center;
 }
 
 .input input {
@@ -28,7 +27,7 @@ html {
   text-align: center;
   display: flex;
   flex: 2;
-  justify-content: center
+  justify-content: center;
 }
 
 .input button {
@@ -70,7 +69,7 @@ html {
 
 .header .nav-links a {
   text-decoration: none;
-  color: #FF1E56;
+  color: #ff1e56;
 }
 
 .response {
