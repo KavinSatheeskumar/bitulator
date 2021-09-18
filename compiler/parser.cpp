@@ -35,6 +35,7 @@ exp *parse(std::vector<Tokens> tokens)
                 for (int j = i + 1; j < tokens.size(); j++)
                     rExpVector.push_back(tokens[j]);
                 expr->type = binary;
+                expr->binExpr = new binExp;
                 expr->binExpr->lExp = parse(lExpVector);
                 expr->binExpr->rExp = parse(rExpVector);
                 expr->binExpr->op = op;
@@ -45,6 +46,7 @@ exp *parse(std::vector<Tokens> tokens)
     }
     if (tokens[0].value.at(0) == '(') {
         expr->type = bracket;
+        expr->braExpr = new braExp;
         std::vector<Tokens> expVector;
         for (int j = 1; j < tokens.size(); j++)
             expVector.push_back(tokens[j]);
@@ -53,6 +55,7 @@ exp *parse(std::vector<Tokens> tokens)
     } 
     else {
         expr->type = Lit;
+        expr->lit = new literal;
         expr->lit->lit = tokens[0].value;
         return expr;
     }

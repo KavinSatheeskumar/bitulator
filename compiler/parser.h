@@ -11,7 +11,7 @@ struct binExp
     exp *rExp;
 };
 
-struct brackets
+struct braExp
 {
     exp *Exp;
 };
@@ -33,7 +33,7 @@ struct exp
     union
     {
         binExp *binExpr;
-        brackets *braExpr;
+        braExp *braExpr;
         literal *lit;
     };
     expressions type;
