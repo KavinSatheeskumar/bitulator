@@ -92,4 +92,6 @@ html {
 
 .Instructions td {
   text-decoration: underline;
+  color: transparent;
+  text-decoration-color: white;
 }
