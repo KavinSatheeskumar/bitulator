@@ -8,6 +8,7 @@
 
 exp *parse(std::vector<Tokens> tokens)
 {
+    if (tokens.empty()) return nullptr;
     exp *expr = new exp;
     std::string precedence = "^/*+-";
     int brackets = 0;
@@ -16,6 +17,7 @@ exp *parse(std::vector<Tokens> tokens)
         int i = 0;
         for (Tokens token : tokens)
         {
+            std::cout << "operator: " << op << " token_type: " << token.type << " token_value: " << token.value << " brackets: " << brackets << std::endl;
             if (token.type == "Bracket")
             {
                 if (token.value.at(0) = '(')
@@ -44,7 +46,8 @@ exp *parse(std::vector<Tokens> tokens)
             i++;
         }
     }
-    if (tokens[0].value.at(0) == '(') {
+    if (tokens[0].value.at(0) == '(')
+    {
         expr->type = bracket;
         expr->braExpr = new braExp;
         std::vector<Tokens> expVector;
@@ -52,8 +55,9 @@ exp *parse(std::vector<Tokens> tokens)
             expVector.push_back(tokens[j]);
         expr->braExpr->Exp = parse(expVector);
         return expr;
-    } 
-    else {
+    }
+    else
+    {
         expr->type = Lit;
         expr->lit = new literal;
         expr->lit->lit = tokens[0].value;
