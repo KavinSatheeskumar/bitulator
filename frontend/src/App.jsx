@@ -79,7 +79,7 @@ const App = () => {
         row
           .transition()
           .delay(1000 * i)
-          .style("background-color", "red");
+          .style("background-color", "#ff1e56");
       }
 
       row
