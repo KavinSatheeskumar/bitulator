@@ -2,6 +2,7 @@ import "./App.css";
 import React, { useState, useRef, useEffect } from "react";
 import * as d3 from 'd3';
 import axios from "axios";
+import Header from './Header';
 
 const App = () => {
   const [input, setInput] = useState("");
@@ -39,6 +40,7 @@ const App = () => {
 
   return (
     <div className="App">
+      <Header />
       <div className="input">
         <form onSubmit={handleSubmit}>
           <label>
