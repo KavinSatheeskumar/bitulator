@@ -120,3 +120,5 @@ public:
         buffer << '}' << std::endl;
     }
 };
+
+std::string parse(std::vector<Tokens> tokens);

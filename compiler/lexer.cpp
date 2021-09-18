@@ -154,12 +154,3 @@ std::vector<Tokens> getchars(std::string input) {
     }
     else return {}; 
 }
-
-// 
-int main(int argc, char* argv[]) {
-
-    std::string input = argv[1]; //
-    //remove useless whitespace
-    input.erase(std::remove_if(input.begin(), input.end(), ::isspace), input.end());
-    std::vector<Tokens> tmp = getchars(input);   
-}; 
