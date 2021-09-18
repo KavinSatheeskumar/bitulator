@@ -60,7 +60,7 @@ const App = () => {
     let Memory = d3
       .select(instructionsRef.current)
       .append("table")
-      .attr('Memory')
+      .attr('class', 'Memory')
       .append("tbody");
 
     let mem_arr = [];
