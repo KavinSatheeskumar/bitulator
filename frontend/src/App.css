@@ -15,11 +15,6 @@ html {
   justify-content: center;
 }
 
-.input p {
-  color: #ff1e56;
-  font-size: medium;
-}
-
 .input input {
   background-color: #ffac41;
   width: auto;
@@ -39,7 +34,7 @@ html {
 .input button {
   height: 40px;
   width: 100%;
-  background-color: transparent;
+  background-color: #666666ee;
   color: #ff1e56;
   font-size: medium;
   border: none;
