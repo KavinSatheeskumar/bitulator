@@ -131,8 +131,9 @@ const App = () => {
           </label>
           <button type="submit">Send</button>
         </form>
+        <p>{myState.response}</p>
       </div>
-      <p>{myState.response}</p>
+      
       <div className="Instructions" ref={instructionsRef}>
         {/*
         <table 
