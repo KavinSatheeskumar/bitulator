@@ -80,12 +80,7 @@ const App = () => {
           <button type="submit">Send</button>
         </form>
       </div>
-<<<<<<< Updated upstream
-      <div className="response"><p>{response}</p></div>
-      
-=======
       <p>{myState.response}</p>
->>>>>>> Stashed changes
       <button onClick={Animate}>Click to do fancy stuff</button>
       <div 
         className="Instructions"
