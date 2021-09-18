@@ -131,8 +131,11 @@ const App = () => {
           </label>
           <button type="submit">Send</button>
         </form>
-        <p>{myState.response}</p>
       </div>
+      <p style={{
+        color: '#ff1e56',
+        fontSize: 'medium'
+      }}>{myState.response}</p>
       
       <div className="Instructions" ref={instructionsRef}>
         {/*
