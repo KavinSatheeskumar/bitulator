@@ -35,7 +35,7 @@ const App = () => {
     const request = { input };
     console.log(request)
     axios
-      .post("http://localhost:80/api", request)
+      .post("http://bitulator.net/api", request)
       .then((res) => {
         setResponse(res.data);
       })
