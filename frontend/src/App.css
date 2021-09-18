@@ -75,3 +75,11 @@ html {
 .response {
   color: #ff1e56;
 }
+
+.description {
+  background-color: black;
+  border: #ffac41 solid 1px;
+  color: #ffffff;
+  width: 100%;
+  height: fit-content;
+}
