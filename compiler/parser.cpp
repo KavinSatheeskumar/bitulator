@@ -1,12 +1,60 @@
 #include <string>
 #include <iostream>
 #include <sstream>
+#include <vector>
+#include <iterator>
 #include "lexer.h"
 #include "parser.h"
 
-std::string parse(std::vector<Tokens> tokens) {
-    for (size_t i = 0; i < tokens.size(); ++i) {
-        std::cout << tokens[i].type << tokens[i].value;
+exp *parse(std::vector<Tokens> tokens)
+{
+    exp *expr = new exp;
+    std::string precedence = "^/*+-";
+    int brackets = 0;
+    for (char op : precedence)
+    {
+        int i = 0;
+        for (Tokens token : tokens)
+        {
+            if (token.type == "Bracket")
+            {
+                if (token.value.at(0) = '(')
+                {
+                    brackets++;
+                }
+                else
+                {
+                    brackets--;
+                }
+            }
+            if (token.type == "Operator" && token.value.at(0) == op && brackets == 0)
+            {
+                std::vector<Tokens> lExpVector, rExpVector;
+                for (int j = 0; j < i; j++)
+                    lExpVector.push_back(tokens[j]);
+                for (int j = i + 1; j < tokens.size(); j++)
+                    rExpVector.push_back(tokens[j]);
+                expr->type = binary;
+                expr->binExpr->lExp = parse(lExpVector);
+                expr->binExpr->rExp = parse(rExpVector);
+                expr->binExpr->op = op;
+                return expr;
+            }
+            i++;
+        }
+    }
+    if (tokens[0].value.at(0) == '(') {
+        expr->type = bracket;
+        std::vector<Tokens> expVector;
+        for (int j = 1; j < tokens.size(); j++)
+            expVector.push_back(tokens[j]);
+        expr->braExpr->Exp = parse(expVector);
+        return expr;
+    } 
+    else {
+        expr->type = Lit;
+        expr->lit->lit = tokens[0].value;
+        return expr;
     }
 }
 
@@ -21,7 +69,6 @@ void deleteExp(exp *exp)
         break;
 
     case Lit:
-        delete exp->lit->lit;
         delete exp->lit;
         break;
 

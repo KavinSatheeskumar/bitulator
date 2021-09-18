@@ -18,7 +18,7 @@ struct brackets
 
 struct literal
 {
-    std::string *lit;
+    std::string lit;
 };
 
 enum expressions
@@ -41,4 +41,4 @@ struct exp
 
 void deleteExp(exp *exp);
 void toJson(std::stringstream &buffer, const exp *exp);
-std::string parse(std::vector<Tokens> tokens);
+exp* parse(std::vector<Tokens> tokens);

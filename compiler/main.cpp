@@ -9,5 +9,8 @@ int main(int argc, char* argv[]) {
     //remove useless whitespace
     input.erase(std::remove_if(input.begin(), input.end(), ::isspace), input.end());
     std::vector<Tokens> tmp = getchars(input);
-    parse(tmp);
+    exp* expr = parse(tmp);
+    std::stringstream buffer;
+    toJson(buffer, expr);
+    std::cout << buffer.str();
 }; 
