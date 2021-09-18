@@ -226,11 +226,11 @@ std::vector<Tokens> getchars(std::string input) {
     if(isNumber) result.push_back({"Number", tmp});
 
     if(validation(result) && isValid) {
-        return result; 
         std::cout << "Tokens:" << '\n'; 
         for(Tokens t : result) {
             std::cout << t.type << " " << t.value << '\n';  
         }
+        return result; 
     }
     else return {}; 
 }
