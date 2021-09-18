@@ -217,7 +217,7 @@ std::vector<Tokens> getchars(std::string input) {
         std::cout << "Tokens:" << '\n'; 
         for(int i = 0; i<result.size(); i++) {
             if(i != result.size()-1) std::cout << result[i].type << " " << result[i].value << ",\n";
-            else std::cout << result[i].type << " " << result[i].value;
+            else std::cout << result[i].type << " " << result[i].value << '\n';
         }
         return result; 
     }
