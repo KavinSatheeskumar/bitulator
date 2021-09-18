@@ -9,15 +9,23 @@ const App = () => {
   const [response, setResponse] = useState();
   const [instrs, setInstrs] = useState(["a","b","c","d"]);
   const [isAnimating, setAnimating] = useState(false);
-  const [currentInstr, setCurrentInstr] = useState(-1);
   const instructionsRef = useRef()
 
   useEffect(() => {
+    d3.select(instructionsRef.current).select('table').remove();
+    let table = d3.select(instructionsRef.current)
+              .append('table').append('tbody');
+    let rows = [];
+    for (let i = 0; i < instrs.length; ++i) {
+      let row = table.append('tr');
+      row.append('td').text(instrs[i]);
+      row.append('td').text('---');
+      rows.push(row);
+    }
     if (isAnimating) {
-      d3.select("#Code")
-        .transition()
-        .delay(1000)
-        .style("background-color", "red");
+      for (let i = 0; i < rows.length; ++i) {
+        //rows[i].transition().delay(1000*i).styles('background-color','red');
+      }
     }
     setAnimating(false);
   })
