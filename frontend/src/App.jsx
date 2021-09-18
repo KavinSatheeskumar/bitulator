@@ -4,46 +4,62 @@ import * as d3 from 'd3';
 import axios from "axios";
 import Header from './Header';
 
+/*
+state = {
+  input: string
+  response: string
+  instrs: string[]
+  isAnimating: boolean
+}
+*/
+
 const App = () => {
+  /*
   const [input, setInput] = useState("");
   const [response, setResponse] = useState();
   const [instrs, setInstrs] = useState(["a","b","c","d"]);
-  const [isAnimating, setAnimating] = useState(false);
+  let [isAnimating, setAnimating] = useState(false);
+  */
+  const [myState, setMyState] = useState({
+    input: "",
+    response: "",
+    instrs: ["a","b","c","d"],
+    isAnimating: false,
+  })
   const instructionsRef = useRef()
 
   useEffect(() => {
+    const { instrs, isAnimating } = myState;
     d3.select(instructionsRef.current).select('table').remove();
     let table = d3.select(instructionsRef.current)
               .append('table').append('tbody');
-    let rows = [];
     for (let i = 0; i < instrs.length; ++i) {
       let row = table.append('tr');
       row.append('td').text(instrs[i]);
       row.append('td').text('---');
-      rows.push(row);
-    }
-    if (isAnimating) {
-      for (let i = 0; i < rows.length; ++i) {
-        //rows[i].transition().delay(1000*i).styles('background-color','red');
+      row.transition().style("background-color", "none")
+      row.transition().delay(1000*instrs.length).style("background-color", "none")
+      if (isAnimating) {
+        console.log("hi");
+        row.transition().delay(1000*i).style("background-color", "red")
       }
     }
-    setAnimating(false);
-  }, [isAnimating, instrs])
+  }, [myState])
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const request = { input };
+    const request = { input: myState.input };
     console.log(request)
     axios
       .post("http://bitulator.net/api", request)
       .then((res) => {
-        setResponse(res.data);
+        setMyState({...myState, response: res.data, isAnimating: false});
       })
       .catch((error) => console.error(error));
   };
 
   const Animate = (e) => {
-    setAnimating(true);
+    setMyState({...myState, isAnimating: true});
   }
 
   return (
@@ -55,17 +71,21 @@ const App = () => {
             <input
               type="text"
               name="aex"
-              value={input}
+              value={myState.input}
               required
               placeholder="Input your AEX"
-              onChange={(e) => setInput(e.target.value)}
+              onChange={(e) => setMyState({...myState, input: e.target.value, isAnimating: false})}
             />
           </label>
           <button type="submit">Send</button>
         </form>
       </div>
+<<<<<<< Updated upstream
       <div className="response"><p>{response}</p></div>
       
+=======
+      <p>{myState.response}</p>
+>>>>>>> Stashed changes
       <button onClick={Animate}>Click to do fancy stuff</button>
       <div 
         className="Instructions"
