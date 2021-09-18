@@ -33,8 +33,8 @@ const App = () => {
           </label>
           <button type="submit">Send</button>
         </form>
-        <p>{response}</p>
       </div>
+      <p>{response}</p>
     </div>
   );
 };

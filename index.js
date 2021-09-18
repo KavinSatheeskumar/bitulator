@@ -36,6 +36,10 @@ app.post('/api', (req, res) => {
         console.log(data.toString())
         res.send(data.toString())
     })
+    child.stderr.on('data', data => {
+        console.log(data.toString())
+        res.send(data.toString())
+    })
 })  
 
 app.listen(port, () => {

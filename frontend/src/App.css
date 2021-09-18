@@ -6,9 +6,25 @@
 }
 
 .input input {
-  width: 200px;
+  width: auto;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
   font-size: larger;
   height: 40px;
   border-radius: 5px;
   border: 1px black solid;
+}
+
+.input button {
+  height: 40px;
+  background-color: transparent;
+  font-size: medium;
+  border: none;
+  border-radius: none;
+}
+
+.input button:hover {
+  background-color: #eeeeeeee;
+  cursor: pointer;
 }
