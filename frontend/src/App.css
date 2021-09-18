@@ -26,11 +26,12 @@ html {
 
 .input button {
   height: 40px;
+  width: 100%;
   background-color: transparent;
   color: #ff1e56;
   font-size: medium;
   border: none;
-  border-radius: none;
+  border-radius: 5px;
 }
 
 .input button:hover {
