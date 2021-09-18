@@ -62,16 +62,16 @@ bool validation(std::vector<Tokens> result) {
     }
 
     if(bids.size()) { bracketErr = true; isValid = false; }
-    if(!opcnt[n-1] || (opcnt[n-1] + 1 != ncnt[n-1])) { cErr = true; isValid = false; }
+    if(opcnt[n-1] + 1 != ncnt[n-1]) { cErr = true; isValid = false; }
 
     for(int a : bbids) {
         int id = matchbrackets[a];
         
         if(id) {
-            if((opcnt[a] - opcnt[id-1]) + 1 !=  (ncnt[a] - ncnt[id-1]) || !(opcnt[a] - opcnt[id-1])) { cErr = true; isValid = false; }
+            if((opcnt[a] - opcnt[id-1]) + 1 !=  (ncnt[a] - ncnt[id-1])) { cErr = true; isValid = false; }
         }
         else {
-            if(opcnt[a] + 1 != ncnt[a] || !(opcnt[a])) { cErr = true; isValid = false; }
+            if(opcnt[a] + 1 != ncnt[a]) { cErr = true; isValid = false; }
         }
     }
 
@@ -217,7 +217,7 @@ std::vector<Tokens> getchars(std::string input) {
         std::cout << "Tokens:" << '\n'; 
         for(int i = 0; i<result.size(); i++) {
             if(i != result.size()-1) std::cout << result[i].type << " " << result[i].value << ",\n";
-            else std::cout << result[i].type << " " << result[i].value;
+            else std::cout << result[i].type << " " << result[i].value << '\n';
         }
         return result; 
     }
