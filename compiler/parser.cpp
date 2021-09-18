@@ -20,7 +20,7 @@ exp *parse(std::vector<Tokens> tokens)
             //std::cout << "operator: " << op << " token_type: " << token.type << " token_value: " << token.value << " brackets: " << brackets << std::endl;
             if (token.type == "Bracket")
             {
-                if (token.value.at(0) = '(')
+                if (token.value.at(0) == '(')
                 {
                     brackets++;
                 }

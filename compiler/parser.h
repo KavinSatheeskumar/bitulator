@@ -42,3 +42,4 @@ struct exp
 void deleteExp(exp *exp);
 void toJson(std::stringstream &buffer, const exp *exp);
 exp* parse(std::vector<Tokens> tokens);
+void search(exp *cur);
