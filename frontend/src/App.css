@@ -2,6 +2,10 @@ html {
   background-color: #202020;
   display: flex;
   justify-content: center;
+
+}
+
+.App {
   max-width: 800px;
 }
 
