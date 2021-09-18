@@ -116,8 +116,15 @@ const App = () => {
       */}
       </div>
       <div className="description">
+        <div style={
+          {
+            padding: 20
+          }
+        }>
         <h3>Getting Started</h3>
-        <h5></h5>
+        <h5>AEX</h5>
+        <p>Short for arethmetic expression, ... </p>
+        </div>
       </div>
     </div>
   );
