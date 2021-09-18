@@ -23,7 +23,8 @@ html {
 
 .input button {
   height: 40px;
-  background-color: transparent;
+  background-color: #d8e3e7;
+  color: #ff1e56;
   font-size: medium;
   border: none;
   border-radius: none;
@@ -45,6 +46,7 @@ html {
 
 .header h2 {
   background-color: linear-gradient(45deg, #ffac41, #ff1e56);
+  -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
   font-size: 32px;
