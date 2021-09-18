@@ -3,7 +3,9 @@ html {
 }
 
 .input {
-
+  display: flex;
+  flex: 2;
+  justify-content: center
 }
 
 .input input {
