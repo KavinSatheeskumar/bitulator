@@ -88,5 +88,8 @@ html {
 
 .Instructions {
   padding: 10px;
+}
+
+.Instructions td {
   text-decoration: underline;
 }
