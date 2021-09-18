@@ -71,9 +71,9 @@ void getchars(std::string input) {
 }
 
 
-int main() {
+int main(int argc, char* argv[]) {
 
-    std::string input = "(8+8)((8) "; 
+    std::string input = argv[1]; 
     //remove useless whitespace
     input.erase(std::remove_if(input.begin(), input.end(), ::isspace), input.end());
     getchars(input); 
