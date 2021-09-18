@@ -84,3 +84,7 @@ html {
   max-width: 800px;
   height: auto;
 }
+
+.Instructions {
+  padding: 10px;
+}
