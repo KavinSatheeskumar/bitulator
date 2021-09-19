@@ -70,7 +70,6 @@ const App = () => {
 
     for (let i = 0; i < instrs.length; ++i) {
       let arr = [];
-      console.log(allStackStates)
       if (allMemStates === [] || allMemStates.length === 0) {
         for (let j = 0; j < MEM_HIG; ++j){
           let sub_arr = []
@@ -92,8 +91,6 @@ const App = () => {
 
       let op = instrs[i][0];
       let loc = instrs[i][1];
-
-      console.log(instrs[i], SP);
 
       if (op === 'SET') {
         let x = SP % MEM_WID;
@@ -169,12 +166,10 @@ const App = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const request = { input: myState.input };
-    console.log(request);
     axios
       .post("http://bitulator.net/api", request)
       .then((res) => {
         let newInstrs = res.data.split(",").map((str) => str.split(" "));
-        console.log(newInstrs);
         setMyState({
           ...myState,
           response: res.data,
