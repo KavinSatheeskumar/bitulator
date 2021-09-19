@@ -209,7 +209,7 @@ const App = () => {
           </p>
           <h5>Use</h5>
           <p>
-            By typing any well-formed arethmetic expression using the above
+            By typing any well-formed arithmetic expression using the above
             listed operands, Bitulator will compile it into tokens, then parse
             it creating an AST, or abstract syntax tree, which then gets
             compiled into code that we use to produce an answer. You can see the
@@ -221,7 +221,14 @@ const App = () => {
           </p>
           <h5>For experts</h5>
           <p>
-            // Add stuff
+            Our project uses React as the front end, and ExpressJS as our webserver, and 
+            NodeJS as our runtime environment. Once a user clicks the Send button, the 
+            data is sent to our backend, written in C++, where the AEX is validated,
+            tokenized, and parsed into an Expression Tree. We then traverse the expression 
+            tree using a DFS like algorithm to extract the data necessary that is posted on 
+            the front end. There are also instructions written in a pseudo-Assembly manner
+            that show what a computer would see if the AEX was compiled by a real computer
+            language. Afterwards, we use the data to make cool animations with D3JS. 
           </p>
           <h5>Credits</h5>
           <p>
