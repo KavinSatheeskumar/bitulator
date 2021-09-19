@@ -124,7 +124,6 @@ const App = () => {
 
       allMemStates.push(arr);
       allStackStates.push(SP);
-      console.log(allStackStates)
     }
 
     for (let i = 0; i < MEM_HIG; ++i) {
@@ -133,6 +132,7 @@ const App = () => {
         let cell = row.append("td").text("");
         for (let k = 0; k < allMemStates.length; ++k) {
           cell.transition().delay(1000*k).text(allMemStates[k][i][j]);
+          console.log(allStackStates[k], MEM_WID * i + j)
           if (allStackStates[k] < MEM_WID * i + j) {
             cell.transition().delay(1000*k).style("background-color", "ff8000");
           } else {
