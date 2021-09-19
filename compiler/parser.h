@@ -39,7 +39,7 @@ struct node
     expressions type;
 };
 
-void deleteExp(node *node);
+void deleteExp(node *expr);
 void toJson(std::stringstream &buffer, const node *node);
 node* parse(std::vector<Tokens> tokens);
 void search(node *cur);

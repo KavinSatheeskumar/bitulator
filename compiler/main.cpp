@@ -17,4 +17,6 @@ int main(int argc, char* argv[]) {
     search(expr); 
     std::cout << returnSOutput() << '\n';
     std::cout << returnDOutput() << '\n'; 
+
+    deleteExp(expr);
 }; 
