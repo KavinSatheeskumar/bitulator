@@ -253,6 +253,21 @@ const App = () => {
             thing, that we call a program, that can be used for teaching and
             learning in a much lower lever form.
           </p>
+          <h5>Output</h5>
+          <p>
+              The program will return a list of instructions that operate on
+            computer memory. These instructions contain a reference to two
+            values, SP and MSP. SP represents the location of the next free slot
+            in memory. So, whenever the program says 'SET SP [some value]', it means
+            load that value into the next free location in memory. 
+              There is also the value MSP. This value represnets the location where SP
+            is stored. So 'ADD MSP SP 1' effectively results in SP = SP + 1. Note the
+            difference between this and 'ADD SP SP 1', which would add the value SP and 1
+            and then store that value in the next free location of memory.
+              In our GUI, we represent the SP by highlighting all of the memory that has
+            already been consumed by the program. Other than this, all of the instructions
+            work exactly as one would imagine.
+          </p>
           <h5>For experts</h5>
           <p>
             Our project uses React as the front end, and ExpressJS as our webserver, and 
