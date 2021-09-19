@@ -97,3 +97,9 @@ html {
 .Instructions tr {
   color: white;
 }
+
+.Memory td {
+  border: 2px solid white;
+  width: 20px;
+  height: 20px;
+}
