@@ -224,6 +224,7 @@ const App = () => {
           }}
         >
           <h3>Getting Started</h3>
+          <h4>**Please use brackets whenever using subraction, division, or timbit**</h4>
           <h5>AEX</h5>
           <p>
             Short for arethmetic expression, this is any well-formed expression
