@@ -68,76 +68,79 @@ const App = () => {
     let allStackStates = [];
     let SP = 0;
 
-    for (let i = 0; i < instrs.length; ++i) {
-      let arr = [];
-      if (allMemStates === [] || allMemStates.length === 0) {
-        for (let j = 0; j < MEM_HIG; ++j){
-          let sub_arr = []
-          for(let k = 0; k < MEM_WID; ++k){
-            sub_arr.push("");
-          }
-          arr.push(sub_arr);
-        }
-      } else {
-        for (let j = 0; j < MEM_HIG; ++j){
-          let sub_arr = []
+    if (isAnimating) {
+      for (let i = 0; i < instrs.length; ++i) {
+        let arr = [];
+        if (allMemStates === [] || allMemStates.length === 0) {
+          for (let j = 0; j < MEM_HIG; ++j){
+            let sub_arr = []
             for(let k = 0; k < MEM_WID; ++k){
-              sub_arr.push(allMemStates[allMemStates.length - 1][j][k]);
+              sub_arr.push("");
             }
-          arr.push(sub_arr);
-        }
-      }
-
-      let op = instrs[i][0];
-      let loc = instrs[i][1];
-
-      if (op === 'SET') {
-        let x = SP % MEM_WID;
-        let y = (SP - x)/MEM_WID;
-        arr[y][x] = parseInt(instrs[i][2]);
-      } else if (loc === 'MSP') {
-        if (op === 'ADD') {
-          ++SP;
+            arr.push(sub_arr);
+          }
         } else {
-          --SP;
+          for (let j = 0; j < MEM_HIG; ++j){
+            let sub_arr = []
+              for(let k = 0; k < MEM_WID; ++k){
+                sub_arr.push(allMemStates[allMemStates.length - 1][j][k]);
+              }
+            arr.push(sub_arr);
+          }
         }
-      } else {
-        let x2 = (SP - 2) % MEM_WID;
-        let y2 = (SP - 2 - x2)/MEM_WID;
 
-        let x1 = (SP - 1) % MEM_WID;
-        let y1 = (SP - 1 - x1)/MEM_WID;
-        if (op === 'ADD') {
-          arr[y2][x2] = arr[y2][x2] + arr[y1][x1] 
-        } else if (op === 'SUB') {
-          arr[y2][x2] = arr[y2][x2] - arr[y1][x1] 
-        } else if (op === 'MUL') {
-          arr[y2][x2] = arr[y2][x2] * arr[y1][x1]
-        } else if (op === 'DIV') {
-          arr[y2][x2] = arr[y2][x2] / arr[y1][x1]
-        } else if (op === 'EXP'){
-          arr[y2][x2] = Math.pow(arr[y2][x2], arr[y1][x1]);
+        let op = instrs[i][0];
+        let loc = instrs[i][1];
+
+        if (op === 'SET') {
+          let x = SP % MEM_WID;
+          let y = (SP - x)/MEM_WID;
+          arr[y][x] = parseInt(instrs[i][2]);
+        } else if (loc === 'MSP') {
+          if (op === 'ADD') {
+            ++SP;
+          } else {
+            --SP;
+          }
         } else {
-          continue;
-        }
-      }
+          let x2 = (SP - 2) % MEM_WID;
+          let y2 = (SP - 2 - x2)/MEM_WID;
 
-      allMemStates.push(arr);
-      allStackStates.push(SP);
+          let x1 = (SP - 1) % MEM_WID;
+          let y1 = (SP - 1 - x1)/MEM_WID;
+          if (op === 'ADD') {
+            arr[y2][x2] = arr[y2][x2] + arr[y1][x1] 
+          } else if (op === 'SUB') {
+            arr[y2][x2] = arr[y2][x2] - arr[y1][x1] 
+          } else if (op === 'MUL') {
+            arr[y2][x2] = arr[y2][x2] * arr[y1][x1]
+          } else if (op === 'DIV') {
+            arr[y2][x2] = arr[y2][x2] / arr[y1][x1]
+          } else if (op === 'EXP'){
+            arr[y2][x2] = Math.pow(arr[y2][x2], arr[y1][x1]);
+          } else {
+            continue;
+          }
+        }
+
+        allMemStates.push(arr);
+        allStackStates.push(SP);
+      }
     }
 
     for (let i = 0; i < MEM_HIG; ++i) {
       let row = Memory.append("tr");
       for (let j = 0; j < MEM_WID; ++j) {
         let cell = row.append("td").text("");
-        for (let k = 0; k < allMemStates.length; ++k) {
-          cell.transition().delay(1000*k).text(allMemStates[k][i][j]);
-          if (allStackStates[k] > MEM_WID * i + j) {
-            cell.transition().delay(1000*k).style("background-color", "#ff8000");
-          } else {
-            cell.transition().delay(1000*k).style("background-color", "transparent");
+        if (isAnimating) {
+          for (let k = 0; k < allMemStates.length; ++k) {
+            cell.transition().delay(1000*k).text(allMemStates[k][i][j]);
+            if (allStackStates[k] > MEM_WID * i + j) {
+              cell.transition().delay(1000*k).style("background-color", "#ff8000");
+            } else {
+              cell.transition().delay(1000*k).style("background-color", "transparent");
+            }
           }
-
         }
       }
     }
@@ -159,6 +162,16 @@ const App = () => {
           .delay(1000 * (i+1))
           .style("background-color", "transparent");
       }
+    }
+
+    if (isAnimating) {
+      setTimeout(() => {
+        setMyState({
+          ...setMyState,
+          input: allMemStates[allMemStates.length - 1][0][0],
+          isAnimating: false,
+        })
+      }, (allMemStates.length) * 1000);
     }
   }, [myState]);
 
@@ -203,11 +216,6 @@ const App = () => {
           <button type="submit">Send</button>
         </form>
       </div>
-      <p style={{
-        color: '#ff1e56',
-        fontSize: 'medium'
-      }}>{myState.response}</p>
-      
       <div className="Instructions" ref={instructionsRef}></div>
       <div className="description">
         <div
