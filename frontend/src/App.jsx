@@ -136,8 +136,7 @@ const App = () => {
         let cell = row.append("td").text("");
         for (let k = 0; k < allMemStates.length; ++k) {
           cell.transition().delay(1000*k).text(allMemStates[k][i][j]);
-          
-          if (allStackStates[k] < 16 * i + j) {
+          if (allStackStates[k] < MEM_WID * i + j) {
             cell.transition().delay(1000*k).style("background-color", "ff8000");
           } else {
             cell.transition().delay(1000*k).style("background-color", "transparent");
