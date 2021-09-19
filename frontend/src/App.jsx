@@ -69,7 +69,7 @@ const App = () => {
 
     for (let i = 0; i < instrs.length; ++i) {
       let arr = [];
-      if (allMemStates === []){
+      if (allMemStates === []) {
         for (let j = 0; j < MEM_HIG; ++j){
           let sub_arr = []
           for(let k = 0; k < MEM_WID; ++k){
@@ -81,12 +81,13 @@ const App = () => {
         for (let j = 0; j < MEM_HIG; ++j){
           let sub_arr = []
             for(let k = 0; k < MEM_WID; ++k){
-              sub_arr.push(allMemStates[j][k]);
+              sub_arr.push(allMemStates[allMemStates.length - 1][j][k]);
             }
           arr.push(sub_arr);
         }
       }
-      allMemStates.push(arr);
+
+      console.log(arr);
 
       let op = instrs[i][0];
       let loc = instrs[i][1];
