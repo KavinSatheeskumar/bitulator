@@ -65,10 +65,10 @@ const App = () => {
       .append("tbody");
 
     let allMemStates = [];
+    let allStackStates = [];
     let SP = 0;
 
     for (let i = 0; i < instrs.length; ++i) {
-      console.log(allMemStates);
       let arr = [];
       if (allMemStates === [] || allMemStates.length === 0) {
         for (let j = 0; j < MEM_HIG; ++j){
@@ -126,7 +126,7 @@ const App = () => {
       }
 
       allMemStates.push(arr);
-      console.log(allMemStates);
+      allStackStates.push(SP);
     }
 
     for (let i = 0; i < MEM_HIG; ++i) {
@@ -135,6 +135,13 @@ const App = () => {
         let cell = row.append("td").text("");
         for (let k = 0; k < allMemStates.length; ++k) {
           cell.transition().delay(1000*k).text(allMemStates[k][i][j]);
+          
+          if (allStackStates[k] < 16 * i + j) {
+            cell.transition().delay(1000*k).style("background-color", "ff8000");
+          } else {
+            cell.transition().delay(1000*k).style("background-color", "transparent");
+          }
+
         }
       }
     }
@@ -150,12 +157,12 @@ const App = () => {
           .transition()
           .delay(1000 * i)
           .style("background-color", "#ff1e56");
-      }
 
-      row
-        .transition()
-        .delay(1000 * instrs.length)
-        .style("background-color", "transparent");
+        row
+          .transition()
+          .delay(1000 * (i+1))
+          .style("background-color", "transparent");
+      }
     }
   }, [myState]);
 
