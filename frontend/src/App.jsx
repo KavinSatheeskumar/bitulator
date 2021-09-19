@@ -133,8 +133,7 @@ const App = () => {
         for (let k = 0; k < allMemStates.length; ++k) {
           cell.transition().delay(1000*k).text(allMemStates[k][i][j]);
           if (allStackStates[k] < MEM_WID * i + j) {
-            console.log(i, j, k)
-            cell.transition().delay(1000*k).style("background-color", "ff8000");
+            cell.transition().delay(1000*k).style("background-color", "#ff8000");
           } else {
             cell.transition().delay(1000*k).style("background-color", "transparent");
           }
