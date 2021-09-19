@@ -68,7 +68,7 @@ const App = () => {
     for (let i = 0; i < MEM_WID; ++i) {
       let row = Memory.append("tr");
       for (let j = 0; j < MEM_HIG; ++j) {
-        let cell = row.append("td").text("&nbsp;");
+        let cell = row.append("td").text("_");
         mem_arr.push(cell);
       }
     }
