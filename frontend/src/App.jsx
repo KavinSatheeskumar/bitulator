@@ -27,9 +27,6 @@ const TEST_INSTRS = [
 function interp(inst, mem_arr) {
   let op = inst[0];
   let loc = instr[1];
-  if (op === 'SET') {
-    
-  }
 
   console.log(inst);
 }
