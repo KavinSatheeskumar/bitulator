@@ -4,3 +4,4 @@
 
 std::string returnSOutput();
 double returnDOutput();
+std::string returnInstruct();

@@ -3,16 +3,21 @@
 #include "math.h"
 
 std::string ans;
+std::string instruct; 
 
 node test; 
 std::stack<std::string> svalues;
 std::stack<double> dvalues;  
+int sp = 0; 
 
 void search(node *cur) {
 
     if(cur->type == Lit) {
         svalues.push(cur->lit->lit);
         dvalues.push(std::stod(cur->lit->lit)); 
+        instruct += "SET SP " + cur->lit->lit + ",\n"; 
+        sp++; 
+        instruct += "ADD MSP SP 1,\n";
         return; 
     }
 
@@ -60,6 +65,9 @@ void search(node *cur) {
                 dvalues.push(pow(d1, d2)); 
                 break; 
         }
+
+        instruct += tmp + " SP-2 SP-1 SP-2,\n"; 
+        instruct += "SUB MSP SP 1,\n";
         ans += tmp + " " + s1 + " " + s2 + "," + '\n'; 
         return;
     }
@@ -68,6 +76,11 @@ void search(node *cur) {
 std::string returnSOutput() {
     ans.pop_back(); 
     return ans; 
+}
+
+std::string returnInstruct() {
+    instruct.pop_back();
+    return instruct; 
 }
 
 double returnDOutput() {
