@@ -8,12 +8,28 @@ const MEM_WID = 8;
 const MEM_HIG = 16;
 
 const TEST_INSTRS = [
+  ['SET','SP','1'],
+  ['ADD','MSP','SP','1'],
+  ['SET','SP','2'],
   ['ADD','SP','1','2'],
   ['ADD','MSP','SP','1'],
   ['MULT','SP','SP-1','SP-1'],
   ['ADD','MSP','SP','1'],
   ['DIV','SP','SP-1','SP-2']
 ]
+
+// All operations are
+// SET SP VAL
+// ADD MSP SP 1
+// SUB MSP SP 1
+// FUNC SP-2 SP-1 SP-2
+
+function interp(inst, mem_arr) {
+  let op = inst[0];
+  let loc = instr[1];
+
+  console.log(inst);
+}
 
 /*
 state = {
@@ -23,15 +39,6 @@ state = {
   isAnimating: boolean
 }
 */
-
-function interp(inst, mem_arr) {
-  let op = inst[0];
-  let loc = inst[1];
-  let arg1 = inst[2];
-  let arg2 = inst[3];
-
-  console.log(inst);
-}
 
 const App = () => {
   /*
@@ -73,8 +80,6 @@ const App = () => {
       }
     }
 
-    let SPthing = d3.select(instructionsRef.current).append('p');
-
     for (let i = 0; i < instrs.length; ++i) {
       let row = CompdCode.append("tr");
       row.append("td").text(instrs[i]);
@@ -103,7 +108,7 @@ const App = () => {
     axios
       .post("http://bitulator.net/api", request)
       .then((res) => {
-        let newInstrs = res.data.split(",").map((str) => str.split(""));
+        let newInstrs = res.data.split(",").map((str) => str.split(" "));
         console.log(newInstrs);
         setMyState({
           ...myState,
@@ -145,21 +150,6 @@ const App = () => {
       }}>{myState.response}</p>
       
       <div className="Instructions" ref={instructionsRef}>
-        {/*
-        <table 
-          id="Code"
-          ref={instructionsRef}
-        >
-          <tbody>
-            {instrs.map((str, i) => (
-                <tr>
-                  <td>{str}</td>
-                  <td>{i === currentInstr ? "===" : "---"}</td>
-                </tr>
-              ))}
-          </tbody>
-        </table>
-      */}
       </div>
       <div className="description">
         <div
