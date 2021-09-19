@@ -15,9 +15,9 @@ void search(node *cur) {
     if(cur->type == Lit) {
         svalues.push(cur->lit->lit);
         dvalues.push(std::stod(cur->lit->lit)); 
-        instruct += "SET SP " + cur->lit->lit + ",\n"; 
+        instruct += "SET SP " + cur->lit->lit + ","; 
         sp++; 
-        instruct += "ADD MSP SP 1,\n";
+        instruct += "ADD MSP SP 1,";
         return; 
     }
 
@@ -66,9 +66,9 @@ void search(node *cur) {
                 break; 
         }
 
-        instruct += tmp + " SP-2 SP-1 SP-2,\n"; 
-        instruct += "SUB MSP SP 1,\n";
-        ans += tmp + " " + s1 + " " + s2 + "," + '\n'; 
+        instruct += tmp + " SP-2 SP-1 SP-2,"; 
+        instruct += "SUB MSP SP 1,";
+        ans += tmp + " " + s1 + " " + s2 + ","; 
         return;
     }
 }
