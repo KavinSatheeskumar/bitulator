@@ -1,13 +1,14 @@
 #include "lexer.h"
 #include "parser.h"
+#include "math.h"
 
 std::string ans;
 
-exp test; 
+node test; 
 std::stack<std::string> svalues;
 std::stack<double> dvalues;  
 
-void search(exp *cur) {
+void search(node *cur) {
 
     if(cur->type == Lit) {
         svalues.push(cur->lit->lit);
@@ -29,24 +30,34 @@ void search(exp *cur) {
         double d1 = dvalues.top(); dvalues.pop();  
         double d2 = dvalues.top(); dvalues.pop();
         
-        svalues.push(std::to_string(d1+d2)); dvalues.push(d1+d2); 
+
     
         std::string tmp = "";
         switch(cur->binExpr->op) {
             case '+': 
                 tmp = "ADD";
+                svalues.push(std::to_string(d1+d2)); 
+                dvalues.push(d1+d2); 
                 break; 
             case '-': 
                 tmp = "MINUS";
+                svalues.push(std::to_string(d1-d2)); 
+                dvalues.push(d1-d2); 
                 break; 
             case '*': 
                 tmp = "MULTI";
+                svalues.push(std::to_string(d1*d2)); 
+                dvalues.push(d1*d2); 
                 break; 
             case '/': 
                 tmp = "DIVIDE";
+                svalues.push(std::to_string(d1/d2)); 
+                dvalues.push(d1/d2); 
                 break; 
             case '^': 
                 tmp = "EXPR"; 
+                svalues.push(std::to_string(pow(d1,d2))); 
+                dvalues.push(pow(d1, d2)); 
                 break; 
         }
         ans += tmp + " " + s1 + " " + s2 + "," + '\n'; 
