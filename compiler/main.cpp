@@ -15,7 +15,7 @@ int main(int argc, char* argv[]) {
     toJson(buffer, expr);
     //std::cout << buffer.str() << '\n';
     search(expr); 
-    std::cout << returnInstruct(); 
+    std::cout << returnInstruct() << '\n'; 
     //std::cout << returnSOutput() << '\n';
     //std::cout << returnDOutput() << '\n'; 
 
