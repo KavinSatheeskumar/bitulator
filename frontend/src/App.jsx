@@ -122,7 +122,7 @@ const App = () => {
       }
 
       allMemStates.push(arr);
-
+      console.log(allMemStates);
     }
 
     for (let i = 0; i < MEM_WID; ++i) {
