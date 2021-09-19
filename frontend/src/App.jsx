@@ -124,6 +124,7 @@ const App = () => {
 
       allMemStates.push(arr);
       allStackStates.push(SP);
+      console.log(allStackStates)
     }
 
     for (let i = 0; i < MEM_HIG; ++i) {
