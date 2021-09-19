@@ -13,11 +13,11 @@ int main(int argc, char* argv[]) {
     node* expr = parse(tmp);
     std::stringstream buffer;
     toJson(buffer, expr);
-    std::cout << buffer.str() << '\n';
+    //std::cout << buffer.str() << '\n';
     search(expr); 
     std::cout << returnInstruct() << '\n'; 
     //std::cout << returnSOutput() << '\n';
-    std::cout << returnDOutput() << '\n'; 
+    //std::cout << returnDOutput() << '\n'; 
 
     deleteExp(expr);
 }; 
