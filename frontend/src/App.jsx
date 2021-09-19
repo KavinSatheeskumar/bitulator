@@ -44,7 +44,7 @@ const App = () => {
   const [myState, setMyState] = useState({
     input: "",
     response: "",
-    instrs: ["a", "b", "c", "d"],
+    instrs: [],
     isAnimating: false,
   });
   const instructionsRef = useRef();
