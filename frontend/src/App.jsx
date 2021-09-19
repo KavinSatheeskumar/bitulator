@@ -96,7 +96,7 @@ const App = () => {
         let x = SP % 16;
         let y = (SP - x)/16;
         console.log(instrs[i][2]);
-        arr[y][x] = instrs[i][1][2];
+        arr[y][x] = instrs[i][2];
       } else if (loc === 'MSP') {
         if (op === 'ADD') {
           ++SP;
