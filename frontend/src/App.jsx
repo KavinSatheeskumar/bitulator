@@ -70,6 +70,7 @@ const App = () => {
 
     for (let i = 0; i < instrs.length; ++i) {
       let arr = [];
+      console.log(allStackStates)
       if (allMemStates === [] || allMemStates.length === 0) {
         for (let j = 0; j < MEM_HIG; ++j){
           let sub_arr = []
