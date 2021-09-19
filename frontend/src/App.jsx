@@ -221,7 +221,7 @@ const App = () => {
             containing brackets, +, - *, /, ^, and our own operator called the
             Timbit operator ($) which comes from the opening ceremony of Hack
             The North 2021, where the conversation switched from hacking to
-            Timbits. It assigns a random operand.
+            Timbits. Call each operand a random flavour of an assortement, and pick a random one.
           </p>
           <h5>Examples</h5>
           <p>
