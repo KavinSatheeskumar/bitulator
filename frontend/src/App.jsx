@@ -28,6 +28,7 @@ const TEST_INSTRS = [
 // FUNC SP-2 SP-1 SP-2
 
 function interp(inst, mem_arr) {
+  console.log(inst);
   let op = inst[0];
   let loc = inst[1];
 
@@ -48,11 +49,15 @@ function interp(inst, mem_arr) {
     let op1 = parseInt(mem_arr[y][x].text())
     let op2 = parseInt(mem_arr[y][x].text())
     if (op === 'ADD') {
-      mem_arr[y][x].text(op1 + op2)
+      mem_arr[y][x].text(op1 + op2);
     } else if (op === 'SUB') {
-      mem_arr[y][x].text(op1 - op2)
-    } else if (op === 'MULT') {
-      mem_arr[y][x].text(op1 * op2)
+      mem_arr[y][x].text(op1 - op2);
+    } else if (op === 'MUL') {
+      mem_arr[y][x].text(op1 * op2);
+    } else if (op === 'DIV') {
+      mem_arr[y][x].text(op1 / op2);
+    } else if (op === 'EXP') {
+      mem_arr[y][x].text(Math.pow(op1, op2));
     }
   }
   console.log(inst);
@@ -140,7 +145,7 @@ const App = () => {
         setMyState({
           ...myState,
           response: res.data,
-          instrs: newInstrs,
+          instrs: TEST_INSTRS,
           isAnimating: true,
         });
       })
