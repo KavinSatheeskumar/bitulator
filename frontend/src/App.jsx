@@ -166,6 +166,15 @@ const App = () => {
             The North 2021, where the conversation switched from hacking to
             Timbits. It assigns a random operand.
           </p>
+          <h3>Examples</h3>
+          <h5>
+            <ul>
+              <li>3+2</li>
+              <li>0-(21-(12+14))</li>
+              <li>8*(9/((1+2)-14))</li>
+              <li>14$(14$(14$14))</li>
+            </ul>
+          </h5>
           <h5>Use</h5>
           <p>
             By typing any well-formed arethmetic expression using the above
@@ -178,6 +187,10 @@ const App = () => {
             thing, that we call a program, that can be used for teaching and
             learning in a much lower lever form.
           </p>
+          <h3>For experts</h3>
+          <h5>
+            // Add stuff
+          </h5>
           <h5>Credits</h5>
           <p>
             Made with tender love and care by <a href="https://www.github.com/KavinSatheeskumar">Kavin Satheeskumar</a>, <a href='https://pconstas.mooo.com'>Pavlos
