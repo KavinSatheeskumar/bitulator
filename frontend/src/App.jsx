@@ -116,8 +116,10 @@ const App = () => {
           arr[x2][y2] = arr[x2][y2] * arr[x1][y1]
         } else if (op === 'DIV') {
           arr[x2][y2] = arr[x2][y2] / arr[x1][y1]
-        } else {
+        } else if (op === 'EXP'){
           arr[x2][y2] = Math.pow(arr[x2][y2], arr[x1][y1]);
+        } else {
+          continue;
         }
       }
 
