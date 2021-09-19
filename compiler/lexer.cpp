@@ -214,11 +214,13 @@ std::vector<Tokens> getchars(std::string input) {
         else result.push_back({"Number", tmp});
     }
     if(validation(result) && isValid) {
+        /*
         std::cout << "Tokens:" << '\n'; 
         for(int i = 0; i<result.size(); i++) {
             if(i != result.size()-1) std::cout << result[i].type << " " << result[i].value << ",\n";
             else std::cout << result[i].type << " " << result[i].value << '\n';
         }
+        */
         return result; 
     }
     else {
