@@ -7,16 +7,16 @@ import Header from "./Header";
 const MEM_WID = 8;
 const MEM_HIG = 16;
 
-const TEST_INSTRS = [
-  ['SET','SP','1'],
-  ['ADD','MSP','SP','1'],
-  ['SET','SP','2'],
-  ['ADD','SP','1','2'],
-  ['ADD','MSP','SP','1'],
-  ['MULT','SP','SP-1','SP-1'],
-  ['ADD','MSP','SP','1'],
-  ['DIV','SP','SP-1','SP-2']
-]
+// const TEST_INSTRS = [
+//   ['SET','SP','1'],
+//   ['ADD','MSP','SP','1'],
+//   ['SET','SP','2'],
+//   ['ADD','SP','1','2'],
+//   ['ADD','MSP','SP','1'],
+//   ['MULT','SP','SP-1','SP-1'],
+//   ['ADD','MSP','SP','1'],
+//   ['DIV','SP','SP-1','SP-2']
+// ]
 
 // All operations are
 
@@ -170,7 +170,7 @@ const App = () => {
         setMyState({
           ...myState,
           response: res.data,
-          instrs: TEST_INSTRS,
+          instrs: newInstrs,
           isAnimating: true,
         });
       })
