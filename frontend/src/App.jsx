@@ -95,8 +95,8 @@ const App = () => {
       console.log(instrs[i], SP);
 
       if (op === 'SET') {
-        let x = SP % 16;
-        let y = (SP - x)/16;
+        let x = SP % MEM_WID;
+        let y = (SP - x)/MEM_WID;
         arr[y][x] = parseInt(instrs[i][2]);
       } else if (loc === 'MSP') {
         if (op === 'ADD') {
@@ -105,11 +105,11 @@ const App = () => {
           --SP;
         }
       } else {
-        let x2 = (SP - 2) % 16;
-        let y2 = (SP - 2 - x2)/16;
+        let x2 = (SP - 2) % MEM_WID;
+        let y2 = (SP - 2 - x2)/MEM_WID;
 
-        let x1 = (SP - 1) % 16;
-        let y1 = (SP - 1 - x1)/16;
+        let x1 = (SP - 1) % MEM_WID;
+        let y1 = (SP - 1 - x1)/MEM_WID;
         if (op === 'ADD') {
           arr[y2][x2] = arr[y2][x2] + arr[y1][x1] 
         } else if (op === 'SUB') {
