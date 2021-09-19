@@ -97,7 +97,7 @@ const App = () => {
       if (op === 'SET') {
         let x = SP % 16;
         let y = (SP - x)/16;
-        arr[y][x] = instrs[i][2];
+        arr[y][x] = parseInt(instrs[i][2]);
       } else if (loc === 'MSP') {
         if (op === 'ADD') {
           ++SP;
@@ -111,15 +111,15 @@ const App = () => {
         let x1 = (SP - 1) % 16;
         let y1 = (SP - 1 - x1)/16;
         if (op === 'ADD') {
-          arr[x2][y2] = arr[x2][y2] + arr[x1][y1] 
+          arr[y2][x2] = arr[y2][x2] + arr[y1][x1] 
         } else if (op === 'SUB') {
-          arr[x2][y2] = arr[x2][y2] - arr[x1][y1] 
+          arr[y2][x2] = arr[y2][x2] - arr[y1][x1] 
         } else if (op === 'MUL') {
-          arr[x2][y2] = arr[x2][y2] * arr[x1][y1]
+          arr[y2][x2] = arr[y2][x2] * arr[y1][x1]
         } else if (op === 'DIV') {
-          arr[x2][y2] = arr[x2][y2] / arr[x1][y1]
+          arr[y2][x2] = arr[y2][x2] / arr[y1][x1]
         } else if (op === 'EXP'){
-          arr[x2][y2] = Math.pow(arr[x2][y2], arr[x1][y1]);
+          arr[y2][x2] = Math.pow(arr[x2][y2], arr[y1][x1]);
         } else {
           continue;
         }
