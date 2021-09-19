@@ -207,8 +207,8 @@ const App = () => {
           </p>
           <h5>Credits</h5>
           <p>
-            Made with tender love and care by Kavin Satheeskumar, Pavlos
-            Constas, Gary Zhu, and Gaurav Talreja for Hack the North 2021
+            Made with tender love and care by <a href="https://www.github.com/KavinSatheeskumar">Kavin Satheeskumar</a>, <a href='https://pconstas.mooo.com'>Pavlos
+            Constas</a>, Gary Zhu, and Gaurav Talreja for Hack the North 2021
           </p>
         </div>
       </div>

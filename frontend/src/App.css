@@ -86,6 +86,10 @@ html {
   height: auto;
 }
 
+.description a {
+  color: white;
+}
+
 .Instructions {
   padding: 10px;
 }

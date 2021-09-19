@@ -22,13 +22,13 @@ node *parse(std::vector<Tokens> tokens)
             {
                 if (token.value.at(0) == '(')
                 {
-                    //brackets++;
-                    std::cout << "brackets++\n";
+                    brackets++;
+                    //std::cout << "brackets++\n";
                 }
                 else
                 {
-                    //brackets--;
-                    std::cout << "brackets--\n";
+                    brackets--;
+                    //std::cout << "brackets--\n";
                 }
             }
             if (token.type == "Operator" && token.value.at(0) == op && brackets == 0)
