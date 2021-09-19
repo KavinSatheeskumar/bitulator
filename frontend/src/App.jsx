@@ -119,7 +119,7 @@ const App = () => {
         } else if (op === 'DIV') {
           arr[y2][x2] = arr[y2][x2] / arr[y1][x1]
         } else if (op === 'EXP'){
-          arr[y2][x2] = Math.pow(arr[x2][y2], arr[y1][x1]);
+          arr[y2][x2] = Math.pow(arr[y2][x2], arr[y1][x1]);
         } else {
           continue;
         }
