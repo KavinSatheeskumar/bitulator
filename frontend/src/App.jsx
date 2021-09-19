@@ -88,11 +88,8 @@ const App = () => {
         }
       }
 
-
       let op = instrs[i][0];
       let loc = instrs[i][1];
-
-      console.log(instrs[i], SP);
 
       if (op === 'SET') {
         let x = SP % MEM_WID;
@@ -136,7 +133,7 @@ const App = () => {
         for (let k = 0; k < allMemStates.length; ++k) {
           cell.transition().delay(1000*k).text(allMemStates[k][i][j]);
           
-          if (allStackStates[k] < 16 * i + j) {
+          if (allStackStates[k] < MEM_WID * i + j) {
             cell.transition().delay(1000*k).style("background-color", "ff8000");
           } else {
             cell.transition().delay(1000*k).style("background-color", "transparent");
@@ -149,7 +146,7 @@ const App = () => {
     for (let i = 0; i < instrs.length; ++i) {
       let row = CompdCode.append("tr");
       row.append("td").text(instrs[i]);
-      row.transition().style("background-color", "transparent");
+      row.style("background-color", "transparent");
 
       if (isAnimating) {
         let command = instrs[i];
@@ -169,12 +166,10 @@ const App = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const request = { input: myState.input };
-    console.log(request);
     axios
       .post("http://bitulator.net/api", request)
       .then((res) => {
         let newInstrs = res.data.split(",").map((str) => str.split(" "));
-        console.log(newInstrs);
         setMyState({
           ...myState,
           response: res.data,
