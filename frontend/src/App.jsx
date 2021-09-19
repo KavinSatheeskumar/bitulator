@@ -7,6 +7,8 @@ import Header from "./Header";
 const MEM_WID = 8;
 const MEM_HIG = 16;
 
+let SP = 0;
+
 const TEST_INSTRS = [
   ['SET','SP','1'],
   ['ADD','MSP','SP','1'],
@@ -19,6 +21,7 @@ const TEST_INSTRS = [
 ]
 
 // All operations are
+
 // SET SP VAL
 // ADD MSP SP 1
 // SUB MSP SP 1
@@ -28,6 +31,30 @@ function interp(inst, mem_arr) {
   let op = inst[0];
   let loc = inst[1];
 
+  if (op === 'SET') {
+    let x = SP % 16;
+    let y = (SP - x)/16;
+
+    mem_arr[y][x].text(parseInt(inst[2]))
+  } else if (loc === 'MSP') {
+    if (op === 'ADD') {
+      ++SP;
+    } else {
+      --SP;
+    }
+  } else {
+    let x = SP % 16;
+    let y = (SP - x)/16;
+    let op1 = parseInt(mem_arr[y][x].text())
+    let op2 = parseInt(mem_arr[y][x].text())
+    if (op === 'ADD') {
+      mem_arr[y][x].text(op1 + op2)
+    } else if (op === 'SUB') {
+      mem_arr[y][x].text(op1 - op2)
+    } else if (op === 'MULT') {
+      mem_arr[y][x].text(op1 * op2)
+    }
+  }
   console.log(inst);
 }
 

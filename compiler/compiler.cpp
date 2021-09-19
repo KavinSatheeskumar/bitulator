@@ -40,22 +40,22 @@ void search(node *cur) {
                 dvalues.push(d1+d2); 
                 break; 
             case '-': 
-                tmp = "MINUS";
+                tmp = "SUB";
                 svalues.push(std::to_string(d1-d2)); 
                 dvalues.push(d1-d2); 
                 break; 
             case '*': 
-                tmp = "MULTI";
+                tmp = "MUL";
                 svalues.push(std::to_string(d1*d2)); 
                 dvalues.push(d1*d2); 
                 break; 
             case '/': 
-                tmp = "DIVIDE";
+                tmp = "DIV";
                 svalues.push(std::to_string(d1/d2)); 
                 dvalues.push(d1/d2); 
                 break; 
             case '^': 
-                tmp = "EXPR"; 
+                tmp = "EXP"; 
                 svalues.push(std::to_string(pow(d1,d2))); 
                 dvalues.push(pow(d1, d2)); 
                 break; 

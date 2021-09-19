@@ -17,17 +17,17 @@ node *parse(std::vector<Tokens> tokens)
         int brackets = 0;
         for (Tokens token : tokens)
         {
-            std::cout << "operator: " << op << " token_type: " << token.type << " token_value: " << token.value << " brackets: " << brackets << std::endl;
+            //std::cout << "operator: " << op << " token_type: " << token.type << " token_value: " << token.value << " brackets: " << brackets << std::endl;
             if (token.type == "Bracket")
             {
                 if (token.value.at(0) == '(')
                 {
-                    brackets++;
+                    //brackets++;
                     std::cout << "brackets++\n";
                 }
                 else
                 {
-                    brackets--;
+                    //brackets--;
                     std::cout << "brackets--\n";
                 }
             }
