@@ -92,10 +92,11 @@ const App = () => {
       let op = instrs[i][0];
       let loc = instrs[i][1];
 
+      console.log(instrs[i], SP);
+
       if (op === 'SET') {
         let x = SP % 16;
         let y = (SP - x)/16;
-        console.log(instrs[i]);
         arr[y][x] = instrs[i][2];
       } else if (loc === 'MSP') {
         if (op === 'ADD') {
