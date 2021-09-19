@@ -26,7 +26,7 @@ const TEST_INSTRS = [
 
 function interp(inst, mem_arr) {
   let op = inst[0];
-  let loc = instr[1];
+  let loc = inst[1];
 
   console.log(inst);
 }
