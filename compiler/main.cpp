@@ -10,6 +10,9 @@ int main(int argc, char* argv[]) {
     //remove useless whitespace
     input.erase(std::remove_if(input.begin(), input.end(), ::isspace), input.end());
     std::vector<Tokens> tmp = getchars(input);
+    /*for(Tokens t : tmp) {
+        std::cout << t.type << " " << t.value << '\n'; 
+    }*/ 
     node* expr = parse(tmp);
     std::stringstream buffer;
     toJson(buffer, expr);

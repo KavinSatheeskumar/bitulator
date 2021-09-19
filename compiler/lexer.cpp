@@ -105,7 +105,7 @@ std::string timbit(std::string s) {
     }
     return s; 
 }
-
+/*
 std::vector<Tokens> addbrackets(std::vector<Tokens> result) {
     std::unordered_map<int, int> fbrackets;
     std::stack<int> ids;
@@ -134,7 +134,7 @@ std::vector<Tokens> addbrackets(std::vector<Tokens> result) {
             i = fbrackets[i]+1; 
         }
     }
-    
+
     int c = 0; 
 
     for(int a : idx) {
@@ -143,7 +143,7 @@ std::vector<Tokens> addbrackets(std::vector<Tokens> result) {
     }
     result.insert(result.begin(), counter, {"Bracket", "("});
     return result; 
-}
+}*/ 
 
 std::vector<Tokens> getchars(std::string input) {  
     input = replaceall(input); 
@@ -250,7 +250,7 @@ std::vector<Tokens> getchars(std::string input) {
         else result.push_back({"Number", tmp});
     }
     if(validation(result) && isValid) {
-        result = addbrackets(result); 
+        //result = addbrackets(result); 
         /*
         std::cout << "Tokens:" << '\n'; 
         for(int i = 0; i<result.size(); i++) {
