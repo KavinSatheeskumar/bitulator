@@ -96,10 +96,10 @@ const App = () => {
         }
       } else {
         let x2 = (SP - 2) % 16;
-        let y2 = (SP - 2 - x)/16;
+        let y2 = (SP - 2 - x2)/16;
 
         let x1 = (SP - 1) % 16;
-        let y1 = (SP - 1 - x)/16;
+        let y1 = (SP - 1 - x1)/16;
         if (op === 'ADD') {
           arr[x2][y2] = arr[x2][y2] + arr[x1][y1] 
         } else if (op === 'SUB') {
