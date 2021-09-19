@@ -129,10 +129,10 @@ const App = () => {
       console.log(allMemStates);
     }
 
-    for (let i = 0; i < MEM_WID; ++i) {
+    for (let i = 0; i < MEM_HIG; ++i) {
       let row = Memory.append("tr");
-      for (let j = 0; j < MEM_HIG; ++j) {
-        let cell = row.append("td").text("_");
+      for (let j = 0; j < MEM_WID; ++j) {
+        let cell = row.append("td").text("");
         for (let k = 0; k < allMemStates.length; ++k) {
           cell.transition().delay(1000*k).text(allMemStates[k][i][j]);
         }
@@ -207,8 +207,7 @@ const App = () => {
         fontSize: 'medium'
       }}>{myState.response}</p>
       
-      <div className="Instructions" ref={instructionsRef}>
-      </div>
+      <div className="Instructions" ref={instructionsRef}></div>
       <div className="description">
         <div
           style={{
