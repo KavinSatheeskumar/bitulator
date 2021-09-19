@@ -7,8 +7,6 @@ import Header from "./Header";
 const MEM_WID = 8;
 const MEM_HIG = 16;
 
-let SP = 0;
-
 const TEST_INSTRS = [
   ['SET','SP','1'],
   ['ADD','MSP','SP','1'],
@@ -26,42 +24,6 @@ const TEST_INSTRS = [
 // ADD MSP SP 1
 // SUB MSP SP 1
 // FUNC SP-2 SP-1 SP-2
-
-function interp(inst, mem_arr) {
-  console.log(inst);
-  let op = inst[0];
-  let loc = inst[1];
-
-  if (op === 'SET') {
-    let x = SP % 16;
-    let y = (SP - x)/16;
-
-    mem_arr[y][x].text(parseInt(inst[2]))
-  } else if (loc === 'MSP') {
-    if (op === 'ADD') {
-      ++SP;
-    } else {
-      --SP;
-    }
-  } else {
-    let x = SP % 16;
-    let y = (SP - x)/16;
-    let op1 = parseInt(mem_arr[y][x].text())
-    let op2 = parseInt(mem_arr[y][x].text())
-    if (op === 'ADD') {
-      mem_arr[y][x].text(op1 + op2);
-    } else if (op === 'SUB') {
-      mem_arr[y][x].text(op1 - op2);
-    } else if (op === 'MUL') {
-      mem_arr[y][x].text(op1 * op2);
-    } else if (op === 'DIV') {
-      mem_arr[y][x].text(op1 / op2);
-    } else if (op === 'EXP') {
-      mem_arr[y][x].text(Math.pow(op1, op2));
-    }
-  }
-  console.log(inst);
-}
 
 /*
 state = {
@@ -102,13 +64,66 @@ const App = () => {
       .attr('class', 'Memory')
       .append("tbody");
 
-    let mem_arr = [];
+    let allMemStates = [];
+    let SP = 0;
+
+    for (let i = 0; i < instrs.length; ++i) {
+      let arr = []
+      if (allMemStates == []){
+        for (let j = 0; j < MEM_HIG; ++j){
+          let sub_arr = []
+          for(let k = 0; k < MEM_WID; ++k){
+            sub_arr.push("");
+          }
+          arr.push(sub_arr);
+        }
+      } else {
+        arr = JSON.parse(JSON.stringify(allMemStates[allMemStates.length - 1]));
+      }
+
+      let op = instrs[i][0];
+      let loc = instrs[i][1];
+
+      if (op === 'SET') {
+        let x = SP % 16;
+        let y = (SP - x)/16;
+        arr[y][x] = instrs[i][1][2];
+      } else if (loc === 'MSP') {
+        if (op === 'ADD') {
+          ++SP;
+        } else {
+          --SP;
+        }
+      } else {
+        let x2 = (SP - 2) % 16;
+        let y2 = (SP - 2 - x)/16;
+
+        let x1 = (SP - 1) % 16;
+        let y1 = (SP - 1 - x)/16;
+        if (op === 'ADD') {
+          arr[x2][y2] = arr[x2][y2] + arr[x1][y1] 
+        } else if (op === 'SUB') {
+          arr[x2][y2] = arr[x2][y2] - arr[x1][y1] 
+        } else if (op === 'MUL') {
+          arr[x2][y2] = arr[x2][y2] * arr[x1][y1]
+        } else if (op === 'DIV') {
+          arr[x2][y2] = arr[x2][y2] / arr[x1][y1]
+        } else {
+          arr[x2][y2] = Math.pow(arr[x2][y2], arr[x1][y1]);
+        }
+      }
+
+      allMemStates.push(arr);
+
+    }
 
     for (let i = 0; i < MEM_WID; ++i) {
       let row = Memory.append("tr");
       for (let j = 0; j < MEM_HIG; ++j) {
         let cell = row.append("td").text("_");
-        mem_arr.push(cell);
+        for (let k = 0; k < allMemStates.length; ++k) {
+          cell.transition().delay(1000*k).text(allMemStates[k][i][j]);
+        }
       }
     }
 
@@ -119,7 +134,6 @@ const App = () => {
 
       if (isAnimating) {
         let command = instrs[i];
-        interp(command, mem_arr);
         row
           .transition()
           .delay(1000 * i)
