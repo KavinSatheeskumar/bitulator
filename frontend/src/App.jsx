@@ -198,6 +198,15 @@ const App = () => {
             The North 2021, where the conversation switched from hacking to
             Timbits. It assigns a random operand.
           </p>
+          <h5>Examples</h5>
+          <p>
+            <ul>
+              <li>3+2</li>
+              <li>0-(21-(12+14))</li>
+              <li>8*(9/((1+2)-14))</li>
+              <li>14$(14$(14$14))</li>
+            </ul>
+          </p>
           <h5>Use</h5>
           <p>
             By typing any well-formed arethmetic expression using the above
@@ -209,6 +218,10 @@ const App = () => {
             simple tokens and keywords get turned into a much more complex
             thing, that we call a program, that can be used for teaching and
             learning in a much lower lever form.
+          </p>
+          <h5>For experts</h5>
+          <p>
+            // Add stuff
           </p>
           <h5>Credits</h5>
           <p>
