@@ -6,10 +6,10 @@
 #include "lexer.h"
 #include "parser.h"
 
-exp *parse(std::vector<Tokens> tokens)
+node *parse(std::vector<Tokens> tokens)
 {
     if (tokens.empty()) return nullptr;
-    exp *expr = new exp;
+    node *expr = new node;
     std::string precedence = "^/*+-";
     for (char op : precedence)
     {
@@ -67,51 +67,51 @@ exp *parse(std::vector<Tokens> tokens)
     }
 }
 
-void deleteExp(exp *exp)
+void deleteExp(node *node)
 {
-    switch (exp->type)
+    switch (node->type)
     {
     case binary:
-        deleteExp(exp->binExpr->lExp);
-        deleteExp(exp->binExpr->rExp);
-        delete exp->binExpr;
+        deleteExp(node->binExpr->lExp);
+        deleteExp(node->binExpr->rExp);
+        delete node->binExpr;
         break;
 
     case Lit:
-        delete exp->lit;
+        delete node->lit;
         break;
 
     case bracket:
-        deleteExp(exp->braExpr->Exp);
-        delete exp->braExpr;
+        deleteExp(node->braExpr->Exp);
+        delete node->braExpr;
         break;
     }
 }
 
-void toJson(std::stringstream &buffer, const exp *exp)
+void toJson(std::stringstream &buffer, const node *node)
 {
-    switch (exp->type)
+    switch (node->type)
     {
     case binary:
         buffer << '{' << std::endl;
-        buffer << '\'' << exp->binExpr->op << "\': {" << std::endl;
+        buffer << '\'' << node->binExpr->op << "\': {" << std::endl;
         buffer << "\t\'left\': ";
-        toJson(buffer, exp->binExpr->lExp);
+        toJson(buffer, node->binExpr->lExp);
         buffer << "," << std::endl;
         buffer << "\t\'right\': ";
-        toJson(buffer, exp->binExpr->rExp);
+        toJson(buffer, node->binExpr->rExp);
         buffer << "," << std::endl;
         buffer << "\t}" << std::endl;
         buffer << '}' << std::endl;
         break;
     case Lit:
         buffer << "{\n \'literal\': ";
-        buffer << exp->lit->lit;
+        buffer << node->lit->lit;
         buffer << '}' << std::endl;
         break;
     case bracket:
         buffer << "{\n \'brackets\': ";
-        toJson(buffer, exp->braExpr->Exp);
+        toJson(buffer, node->braExpr->Exp);
         buffer << '}' << std::endl;
         break;
     }

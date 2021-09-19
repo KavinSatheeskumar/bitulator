@@ -2,18 +2,18 @@
 #include <iostream>
 #include <sstream>
 
-struct exp;
+struct node;
 
 struct binExp
 {
     char op;
-    exp *lExp;
-    exp *rExp;
+    node *lExp;
+    node *rExp;
 };
 
 struct braExp
 {
-    exp *Exp;
+    node *Exp;
 };
 
 struct literal
@@ -28,7 +28,7 @@ enum expressions
     bracket
 };
 
-struct exp
+struct node
 {
     union
     {
@@ -39,6 +39,7 @@ struct exp
     expressions type;
 };
 
-void deleteExp(exp *exp);
-void toJson(std::stringstream &buffer, const exp *exp);
-exp* parse(std::vector<Tokens> tokens);
+void deleteExp(node *node);
+void toJson(std::stringstream &buffer, const node *node);
+node* parse(std::vector<Tokens> tokens);
+void search(node *cur);

@@ -90,8 +90,6 @@ html {
   padding: 10px;
 }
 
-.Instructions td {
-  text-decoration: underline;
-  color: transparent;
-  text-decoration-color: white;
+.Instructions tr {
+  color: white;
 }
