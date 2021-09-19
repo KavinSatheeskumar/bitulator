@@ -76,10 +76,7 @@ bool validation(std::vector<Tokens> result) {
     }
 
     if(isValid) return true; 
-    else {
-
-        return false; 
-    } 
+    else return false; 
 }
 
 std::string replaceall(std::string s) {
@@ -109,9 +106,48 @@ std::string timbit(std::string s) {
     return s; 
 }
 
+std::vector<Tokens> addbrackets(std::vector<Tokens> result) {
+    std::unordered_map<int, int> fbrackets;
+    std::stack<int> ids;
+    int n = result.size();
+    for(int i = 0; i<n; i++) {
+        if(result[i].value == "(") {
+            ids.push(i);
+        }
+        else if(result[i].value == ")") {
+            fbrackets[ids.top()] = i; ids.pop(); 
+        }
+    }
+    int numbersc = 0; int counter = 0;
+    std::vector<int> idx; 
+    for(int i = 0; i<n; i++) {
+        if(result[i].type == "Number") {
+            numbersc++;
+            if(numbersc >= 2) {
+                idx.push_back(i+1); 
+                counter++;
+            }
+        }
+        else if(result[i].value == "(") { 
+            idx.push_back(fbrackets[i]+1);
+            counter++; 
+            i = fbrackets[i]+1; 
+        }
+    }
+    
+    int c = 0; 
+
+    for(int a : idx) {
+        result.insert(result.begin()+a+c, 1, {"Bracket", ")"}); 
+        c++; 
+    }
+    result.insert(result.begin(), counter, {"Bracket", "("});
+    return result; 
+}
+
 std::vector<Tokens> getchars(std::string input) {  
     input = replaceall(input); 
-    input = timbit(input); 
+    input = timbit(input);  
     std::vector<Tokens> result;  
     std::set<char> operators = {'+', '-', '*', '/', '^', '$'}; 
     std::set<char> allbrackets = {'(', ')'}; 
@@ -214,6 +250,7 @@ std::vector<Tokens> getchars(std::string input) {
         else result.push_back({"Number", tmp});
     }
     if(validation(result) && isValid) {
+        result = addbrackets(result); 
         /*
         std::cout << "Tokens:" << '\n'; 
         for(int i = 0; i<result.size(); i++) {
