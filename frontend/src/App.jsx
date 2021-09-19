@@ -103,7 +103,7 @@ const App = () => {
     axios
       .post("http://bitulator.net/api", request)
       .then((res) => {
-        let newInstrs = res.data.split(",").map((str) => str.split(""));
+        let newInstrs = res.data.split(",").map((str) => str.split(" "));
         console.log(newInstrs);
         setMyState({
           ...myState,
