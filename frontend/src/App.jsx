@@ -167,7 +167,7 @@ const App = () => {
     if (isAnimating) {
       setTimeout(() => {
         setMyState({
-          ...setMyState,
+          ...myState,
           input: allMemStates[allMemStates.length - 1][0][0],
           isAnimating: false,
         })
