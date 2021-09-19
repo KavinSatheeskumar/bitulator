@@ -23,10 +23,12 @@ node *parse(std::vector<Tokens> tokens)
                 if (token.value.at(0) == '(')
                 {
                     brackets++;
+                    //std::cout << "brackets++\n";
                 }
                 else
                 {
                     brackets--;
+                    //std::cout << "brackets--\n";
                 }
             }
             if (token.type == "Operator" && token.value.at(0) == op && brackets == 0)
@@ -65,23 +67,23 @@ node *parse(std::vector<Tokens> tokens)
     }
 }
 
-void deleteExp(node *node)
+void deleteExp(node *expr)
 {
-    switch (node->type)
+    switch (expr->type)
     {
     case binary:
-        deleteExp(node->binExpr->lExp);
-        deleteExp(node->binExpr->rExp);
-        delete node->binExpr;
+        deleteExp(expr->binExpr->lExp);
+        deleteExp(expr->binExpr->rExp);
+        delete expr->binExpr;
         break;
 
     case Lit:
-        delete node->lit;
+        delete expr->lit;
         break;
 
     case bracket:
-        deleteExp(node->braExpr->Exp);
-        delete node->braExpr;
+        deleteExp(expr->braExpr->Exp);
+        delete expr->braExpr;
         break;
     }
 }

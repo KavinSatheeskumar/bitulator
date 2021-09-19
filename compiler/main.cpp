@@ -18,4 +18,6 @@ int main(int argc, char* argv[]) {
     std::cout << returnInstruct() << '\n'; 
     //std::cout << returnSOutput() << '\n';
     std::cout << returnDOutput() << '\n'; 
+
+    deleteExp(expr);
 }; 
