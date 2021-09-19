@@ -10,7 +10,7 @@ node *parse(std::vector<Tokens> tokens)
 {
     if (tokens.empty()) return nullptr;
     node *expr = new node;
-    std::string precedence = "^/*+-";
+    std::string precedence = "-+*/^";
     for (char op : precedence)
     {
         int i = 0;
